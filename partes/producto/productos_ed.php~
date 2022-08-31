@@ -1,0 +1,108 @@
+<?php 
+
+
+$dato = $_GET ['da'] ;
+$llave = $_GET ['lla']
+
+
+$con = "select * from  carta where id_producto = $llave";
+
+$co = new sen ($con,$conexion, 'producto');
+
+$co->con();
+
+$plato = mysqli_fetch_array($co->res) {
+
+
+
+?>
+
+<div id="formulario">
+	<form action="principal.php?da=2" method="post" enctype="multipart/form-data">
+	
+	<input type="text" name="nombre" required="required" placeholder="Insertar producto"><br>
+	<input type="text" name="referencia" required="required" placeholder="Insertar la referencia"><br>
+	<input type="number" name="precio" required="required" placeholder="Precio"><br>
+	<input type="text" name="peso" required="required" placeholder="Insertar el peso"><br>
+	<select>
+    <option value="1">Opción 1</option>
+    <option value="2" selected>Opción 2</option> <!-- Opción por defecto -->
+    <option value="3">Opción 3</option>
+	<input type="text" name="stock" required="required" placeholder="Insertar el stock"><br>
+	<input type="date" name="fecha" min="2018-03-25" max="2018-05-25" step="2" />
+  <input type="time" name="hora" min="18:00" max="21:00" step="3600" />
+	<textarea name="descri" rows="4" cols="50" required="required" placeholder="descripcion" class="ckeditor"></textarea><br>
+	<input type="submit" name="boton" value="Guargar">
+	
+	
+	</form>
+</div>
+
+
+
+
+<?php
+
+
+// pregunta si el boton se presiono................
+ if(isset($_POST ['boton']))   {
+	
+	//capturar los datos enviados
+	
+	//poner una condicion
+	if(isset($_FILES ['imagen']['name']) && $_FILES ['imagen']['name'] !="") {
+					$plato = $_POST ['plato'];
+					$ingredientes = $_POST ['ingredientes'];
+					$precio = $_POST ['precio'];
+					$imagen =$_FILES ['imagen'];
+					$llave=$_POST ['llave'];
+					
+	
+	
+	
+	
+   //se guarda la imagen en la base de datos
+   $editar = "update carta SET  categoria ='$nombre_final',precio = $precio, ingredientes = $'ingredientes' where  id_carta = $llave ";
+
+$ed= new sen ($editar,$conexion, 'carta imagen' );
+
+$ed->insedbo () ;
+   
+   
+}                                                                                                                                   
+
+
+ header("location: principal.php?da=1");
+
+
+
+ }
+
+
+
+$editar = "update carta SET producto = '$producto',referencia= $referencia, categoria='$categoria, stock= '$stock,precio = '$precio, peso = $'peso' fecha='$fecha  where  id_carta = $llave ";
+
+$ed= new sen ($editar,$conexion, 'producto');
+
+$ed->insedbo () ;
+
+
+  } 
+   
+   
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

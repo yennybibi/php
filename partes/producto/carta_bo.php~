@@ -1,0 +1,10 @@
+<?php
+	$llave = $_GET['lla'];
+	
+	$bor = "delete from carta where id_carta = $llave";
+	$borrar = new sen($bor, $conexion, 'carta');
+	$borrar->insedbo();
+	
+	header("Location: principal.php?da=1");	
+	
+?>
